@@ -1,0 +1,68 @@
+/* Calendar Styles */
+.react-calendar {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  font-family: inherit;
+  line-height: 1.125em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.react-calendar__tile {
+  position: relative;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 6.6667px;
+}
+
+.react-calendar__tile.has-attendance {
+  background-color: #e3f2fd;
+}
+
+.react-calendar__tile.has-attendance:hover {
+  background-color: #bbdefb;
+  cursor: pointer;
+}
+
+.react-calendar__tile--active {
+  background: #1976d2;
+  color: white;
+}
+
+.react-calendar__tile--active.has-attendance {
+  background: #1565c0;
+}
+
+.calendar-tile-content {
+  position: absolute;
+  bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendar-tile-content .badge {
+  font-size: 0.7rem;
+}
+
+/* Pulse animation for live tracking */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(13, 110, 253, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}

@@ -1,0 +1,56 @@
+/* Sidebar.css */
+
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1f1f2e; /* Darker than default Bootstrap dark */
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.sidebar-header {
+  background-color: #27293d;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .nav-link {
+  color: #ccc;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #34344a;
+  color: #fff;
+}
+
+.sidebar .nav-link.active {
+  background-color: #007bff;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.sidebar .nav-link i {
+  width: 20px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .sidebar .nav-link {
+    padding: 0.75rem 1rem;
+  }
+}
