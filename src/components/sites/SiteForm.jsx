@@ -19,7 +19,14 @@ const SiteForm = () => {
   const { siteId } = useParams();
   const isEdit = !!siteId;
 
-  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+    watch
+  } = useForm({
     defaultValues: {
       radiusInMeters: 15
     }
@@ -46,7 +53,7 @@ const SiteForm = () => {
 
       if (site.latitude && site.longitude) {
         setLocation({ latitude: site.latitude, longitude: site.longitude });
-        setMapKey(prev => prev + 1);
+        setMapKey((prev) => prev + 1);
       }
     } catch (err) {
       toast.error('Failed to load site');
@@ -99,6 +106,9 @@ const SiteForm = () => {
       </div>
     );
   }
+
+  const radiusValue = parseFloat(watch('radiusInMeters'));
+  const validRadius = !isNaN(radiusValue) ? radiusValue : 15;
 
   return (
     <div>
@@ -220,7 +230,7 @@ const SiteForm = () => {
               <SiteMap
                 key={mapKey}
                 initialLocation={location}
-                radius={parseFloat(watch('radiusInMeters') || 15)}
+                radius={validRadius}
                 onLocationChange={handleLocationChange}
                 height="400px"
               />
