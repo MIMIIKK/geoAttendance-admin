@@ -253,43 +253,55 @@ export const attendanceService = {
     }
   },
 
-  // Clock out - update existing record
-  async clockOut(userEmail, recordId, clockOutData) {
-    try {
-      const docRef = doc(db, COLLECTION_NAME, userEmail, 'records', recordId);
-      
-      const docSnap = await getDoc(docRef);
-      if (!docSnap.exists()) {
-        throw new Error('Attendance record not found');
-      }
+// Add this method to your existing attendanceService
 
-      const existingData = docSnap.data();
-      const clockOutTime = Timestamp.now();
-      
-      // Calculate total hours
-      const clockInTime = this.convertTimestamp(existingData.clockInTime);
-      const timeDiff = clockOutTime.toDate() - clockInTime;
-      const hours = timeDiff / (1000 * 60 * 60);
-      
-      const updates = {
-        ...clockOutData,
-        clockOutTime,
-        totalHours: hours,
-        updatedAt: Timestamp.now()
-      };
-
-      if (clockOutData.payRate) {
-        updates.payAmount = hours * clockOutData.payRate;
-      }
-
-      await updateDoc(docRef, updates);
-
-      return { success: true, totalHours: hours };
-    } catch (error) {
-      console.error('Error clocking out:', error);
-      throw error;
+// Clock out - update existing record
+async clockOut(userEmail, recordId, clockOutData) {
+  try {
+    console.log('🔄 Clocking out:', { userEmail, recordId, clockOutData });
+    
+    const docRef = doc(db, COLLECTION_NAME, userEmail, 'records', recordId);
+    
+    // Get the existing record to calculate hours
+    const docSnap = await getDoc(docRef);
+    if (!docSnap.exists()) {
+      throw new Error('Attendance record not found');
     }
-  },
+
+    const existingData = docSnap.data();
+    const clockOutTime = Timestamp.now();
+    
+    // Calculate total hours
+    const clockInTime = this.convertTimestamp(existingData.clockInTime);
+    if (!clockInTime) {
+      throw new Error('Invalid clock in time');
+    }
+    
+    const timeDiff = clockOutTime.toDate() - clockInTime;
+    const hours = timeDiff / (1000 * 60 * 60);
+    
+    const updates = {
+      ...clockOutData,
+      clockOutTime,
+      totalHours: hours,
+      updatedAt: Timestamp.now()
+    };
+
+    // Calculate pay amount if payRate is provided
+    if (clockOutData.payRate && clockOutData.payRate > 0) {
+      updates.payAmount = hours * clockOutData.payRate;
+    }
+
+    await updateDoc(docRef, updates);
+    
+    console.log('✅ Successfully clocked out:', { userEmail, hours: hours.toFixed(2) });
+
+    return { success: true, totalHours: hours };
+  } catch (error) {
+    console.error('❌ Error clocking out:', error);
+    throw error;
+  }
+},
 
   // Get current active session for a user
   async getCurrentSession(userEmail) {
