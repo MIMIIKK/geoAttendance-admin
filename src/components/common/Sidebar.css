@@ -1,56 +1,305 @@
-/* Sidebar.css */
-
+/* Sidebar Styles */
 .sidebar {
   width: 240px;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #1f1f2e; /* Darker than default Bootstrap dark */
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #1f1f2e 0%, #27293d 100%);
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
   overflow-y: auto;
-  z-index: 1000;
+  overflow-x: hidden;
+  z-index: 1050;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Sidebar Header */
 .sidebar-header {
-  background-color: #27293d;
+  background: linear-gradient(135deg, #27293d 0%, #2c2f48 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.sidebar .nav-link {
-  color: #ccc;
+.sidebar-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.sidebar-header:hover::before {
+  left: 100%;
+}
+
+.sidebar-header h5 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+  background: linear-gradient(135deg, #007bff, #0dcaf0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.sidebar-link {
+  color: #b8b9c7 !important;
   font-size: 0.95rem;
   font-weight: 500;
-  display: flex;
+  display: flex !important;
   align-items: center;
-  transition: all 0.2s ease-in-out;
+  padding: 0.875rem 1.5rem !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  border: none !important;
+  margin: 0.125rem 0.75rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
-.sidebar .nav-link:hover {
-  background-color: #34344a;
-  color: #fff;
+.sidebar-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transition: left 0.3s ease-in-out;
 }
 
-.sidebar .nav-link.active {
-  background-color: #007bff;
-  color: #fff !important;
+.sidebar-link:hover::before {
+  left: 100%;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  transform: translateX(5px);
+  backdrop-filter: blur(10px);
+}
+
+.sidebar-link.active {
+  background: linear-gradient(135deg, #007bff, #0dcaf0) !important;
+  color: white !important;
   font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  transform: translateX(5px);
 }
 
-.sidebar .nav-link i {
+.sidebar-link.active .active-indicator {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  background: white;
+  border-radius: 3px 0 0 3px;
+}
+
+.sidebar-icon {
   width: 20px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
 }
 
+.sidebar-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  color: #b8b9c7;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.user-info:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #007bff, #0dcaf0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.user-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: #b8b9c7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Scrollbar Styling */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
+    transform: translateX(-100%);
+    z-index: 1050;
   }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  
+  .sidebar-link {
+    padding: 1rem 1.5rem !important;
+    margin: 0.125rem 0.5rem;
+  }
+  
+  .sidebar-header {
+    padding: 1.25rem;
+  }
+  
+  .user-info {
+    padding: 0.75rem 0.5rem;
+  }
+}
 
-  .sidebar .nav-link {
-    padding: 0.75rem 1rem;
+@media (max-width: 576px) {
+  .sidebar {
+    width: 100%;
+  }
+  
+  .sidebar-link {
+    font-size: 1rem;
+    padding: 1.125rem 1rem !important;
+  }
+  
+  .sidebar-icon {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.sidebar {
+  animation: slideIn 0.3s ease-out;
+}
+
+.sidebar-link {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .sidebar {
+    border-right: 2px solid #007bff;
+  }
+  
+  .sidebar-link {
+    border: 1px solid transparent;
+  }
+  
+  .sidebar-link:focus,
+  .sidebar-link.active {
+    border-color: #007bff;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .sidebar-link,
+  .sidebar-header::before,
+  .sidebar-link::before {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sidebar {
+    display: none;
   }
 }

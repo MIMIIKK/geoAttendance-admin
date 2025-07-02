@@ -53,7 +53,9 @@ html {
 
 body {
   margin: 0;
-  display: flex;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
   min-width: 320px;
   min-height: 100vh;
   font-family: inherit;
@@ -64,6 +66,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 /* ===== TYPOGRAPHY ===== */
