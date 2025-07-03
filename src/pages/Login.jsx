@@ -47,7 +47,7 @@ const Login = () => {
                   <div className="logo-container mb-3">
                     <i className="fas fa-map-marker-alt text-primary" style={{ fontSize: '48px' }}></i>
                   </div>
-                  <h2 className="mb-2 fw-bold">GeoAttendance</h2>
+                  <h2 className="mb-2 fw-bold">Palpa Services</h2>
                   <p className="text-muted mb-0">Admin Panel Access</p>
                   <small className="text-muted">Sign in to manage your workforce</small>
                 </div>
