@@ -68,7 +68,7 @@ const Sidebar = ({ collapsed, onClose }) => {
             <div>
               <h5 className="mb-0">
                 <i className="fas fa-map-marker-alt me-2"></i>
-                Palpa Services
+                Company Name
               </h5>
               <small className="text-white-50 d-block">Admin Panel</small>
             </div>
