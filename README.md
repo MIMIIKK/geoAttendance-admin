@@ -1,12 +1,26 @@
-# React + Vite
+# geoAttendance-admin
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`geoAttendance-admin` is a web-based administrative interface for managing attendance through geofencing. Designed for organizations with mobile workforces, it enables location-aware attendance tracking, real-time worker monitoring, and secure user management.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This system allows administrators to:
 
-## Expanding the ESLint configuration
+- Define and manage geofenced areas using polygon selection.
+- Monitor real-time worker check-in and check-out activity.
+- Assign users to specific locations.
+- Manage user roles, profiles, and permissions.
+- Receive notifications when users enter or leave assigned zones.
+- View attendance logs and task assignments.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Technologies Used
+
+### Backend
+- Firebase
+- JWT Authentication
+
+### Frontend
+- React with Vite
+- Axios
+- Leaflet.js or Mapbox GL JS (for map integration)
+- Bootstrap 5
