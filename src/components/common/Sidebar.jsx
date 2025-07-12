@@ -15,8 +15,7 @@ const Sidebar = ({ collapsed, onClose }) => {
     { path: '/workers', icon: 'fas fa-users', label: 'Workers' },
     { path: '/sites', icon: 'fas fa-map-marker-alt', label: 'Sites' },
     { path: '/attendance', icon: 'fas fa-clock', label: 'Attendance' },
-    { path: '/reports', icon: 'fas fa-chart-bar', label: 'Reports' },
-    { path: '/settings', icon: 'fas fa-cog', label: 'Settings' },
+    { path: '/reports', icon: 'fas fa-chart-bar', label: 'Reports' }
   ];
 
   // PROPER LOGOUT FUNCTION USING AUTH CONTEXT
